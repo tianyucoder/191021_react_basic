@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+<script type="text/javascript" >
+	
+	function test(...a) {
+		console.log('test',a);
+	}
+
+	function demo(...params) {
+		console.log(params); //数组
+		test(...params)
+	}
+
+	demo(1,2,3,4,5)
+
+</script>
+	
+</body>
+</html>
