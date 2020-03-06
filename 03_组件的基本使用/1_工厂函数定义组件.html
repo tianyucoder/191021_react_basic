@@ -16,7 +16,7 @@
 	<script type="text/javascript" src="../js/babel.min.js"></script>
 
 	<script type="text/babel">
-		//1.使用工厂函数创建组件
+		//1.使用工厂函数定义组件（简单组件用此方法定义）
 		function Demo() {
 			console.log(this); //jsx经过babel编译js后开启了严格模式，所以此处的this是undefined。
 			return <h2>我是工厂函数定义的组件（简单组件用我去定义）</h2>

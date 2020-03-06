@@ -6,8 +6,7 @@
 </head>
 <body>
 
-  <div id="example1"></div>
-  <div id="example2"></div>
+  <div id="example"></div>
 	
   <!-- 引入react核心库 -->
 	<script type="text/javascript" src="../js/react.development.js"></script>
@@ -15,6 +14,29 @@
 	<script type="text/javascript" src="../js/react-dom.development.js"></script>
 	<!-- 引入babel编译jsx -->
 	<script type="text/javascript" src="../js/babel.min.js"></script>
+
+	<script type="text/babel" >
+		//1.使用ES6类定义组件（复杂组件用此方法定义）
+		class Demo extends React.Component{
+			//下面的render是放在Demo的原型上的。
+			render(){ //该render和ReactDOM.render不是一个render，没有关系，仅仅是同名
+				console.log(this); //此处的this是Demo的实例
+				return <h2>我是ES6类定义的组件（复杂组件用我去定义）</h2>
+			}
+		}
+		//2.渲染组件标签
+		ReactDOM.render(<Demo/>,document.getElementById('example'))
+		/* 
+			上述代码的执行过过程：
+					1.由于写了ReactDOM.render(<Demo/>.....  会触发React去查找Demo组件定义的位置。
+					2.找到Demo组件后发现，该组件是用类定义的，React立刻new一个Demo的实例出来。
+					3.通过上一步的实例去调用了render方法，获取了方法的返回值。
+					4.将返回值(虚拟DOM)渲染到页面指定位置。
+			如何判断一个组件是否复杂？
+					如果该组件有状态，那么就是复杂组件。反之就不是。
+
+		 */
+	</script>
 	
 </body>
 </html>
