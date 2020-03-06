@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+<script type="text/javascript" >
+
+	class Person {
+		//类的构造器，必须写吗？---不是,如果想在类的实例自身上放一些东西，且这些东西是外部传入的，就要写构造器
+		constructor(name,age){
+			this.name = name //构造器里的this是谁？----该类的实例
+			this.age = age
+		}
+		//speak方法是放在哪里的？----- Person的原型对象上的
+		speak(){
+			//speak里的this是谁？---- 是Person的实例
+			console.log('我是一个人，',this.name,this.age);
+		}
+		/* 类中能写什么样的代码？
+						 1.构造器  
+						 2.方法名(){}  ---  放在原型上的
+						 3.赋值语句，例如：a=1,含义：在该类的实例身上加一个a属性，值为1 
+		*/
+		a = 1 //在该类的实例身上加一个a属性，值为1 
+	}
+
+	new Person('lisi',18)
+
+	//继承的概念
+	class Student extends Person{
+		constructor(name,age){
+			super(name,age) //因为Student继承了Person，且Student写了构造器，那么构造器中就必须调用super
+		}
+	}
+	let s = new Student()
+	console.log(s);
+
+</script>
+	
+</body>
+</html>

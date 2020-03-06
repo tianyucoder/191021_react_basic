@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>2种创建组件方式</title>
+</head>
+<body>
+
+  <div id="example"></div>
+	
+  <!-- 引入react核心库 -->
+	<script type="text/javascript" src="../js/react.development.js"></script>
+	<!-- 引入react-dom，react靠它操作DOM -->
+	<script type="text/javascript" src="../js/react-dom.development.js"></script>
+	<!-- 引入babel编译jsx -->
+	<script type="text/javascript" src="../js/babel.min.js"></script>
+
+	<script type="text/babel">
+		//1.使用工厂函数创建组件
+		function Demo() {
+			console.log(this); //jsx经过babel编译js后开启了严格模式，所以此处的this是undefined。
+			return <h2>我是工厂函数定义的组件（简单组件用我去定义）</h2>
+		}
+		//2.渲染组件标签
+		ReactDOM.render(<Demo/>,document.getElementById('example'))
+		/* 
+				上述代码的执行过过程：
+						1.由于写了ReactDOM.render(<Demo/>.....  会触发React去查找Demo组件定义的位置。
+						2.找到Demo组件后发现，该组件是用工厂函数定义的，React立刻调用Demo，获取到返回值。
+						3.将返回值(虚拟DOM)渲染到页面指定位置。
+		 */
+	</script>
+	
+</body>
+</html>
