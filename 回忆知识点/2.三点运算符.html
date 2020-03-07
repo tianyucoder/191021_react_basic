@@ -9,16 +9,29 @@
 
 <script type="text/javascript" >
 	
-	function test(...a) {
-		console.log('test',a);
-	}
-
-	function demo(...params) {
+	//三点运算符用在函数传参，批量接收所有参数
+	/* function demo(...params) {
 		console.log(params); //数组
-		test(...params)
 	}
+	demo(1,2,3,4,5) */
 
-	demo(1,2,3,4,5)
+	//三点运算符用于展开一个数组,解包
+	/* let arr = [3,4,5]
+	let arr2 = [1,2,...arr,6,7,8]
+	console.log(arr2);
+	console.log(arr);
+	console.log(...arr2);
+	console.log(...arr); */
+
+	//三点运算符用于展开一个对象,解包
+	/* let obj = {name:'laoliu',age:18,sex:'女'}
+	console.log(...obj); //该行报错，三点运算符不能展开一个对象 */
+
+	//{三点运算符}用于浅克隆一个对象
+	/* let obj = {name:'laoliu',age:18,sex:'女',demo:{a:1,b:2}}
+	let obj2 = {...obj} //复制一份obj，给obj2，这是浅复制(克隆)
+	obj.demo.a = 900
+	console.log(obj2); */
 
 </script>
 	

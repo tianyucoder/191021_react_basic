@@ -9,6 +9,7 @@
 
 <script type="text/javascript" >
 
+	//类的基本形式
 	class Person {
 		//类的构造器，必须写吗？---不是,如果想在类的实例自身上放一些东西，且这些东西是外部传入的，就要写构造器
 		constructor(name,age){
@@ -27,10 +28,9 @@
 		*/
 		a = 1 //在该类的实例身上加一个a属性，值为1 
 	}
-
 	let p = new Person('lisi',18)
 	//p.speak()
-	console.log(p);
+	//console.log(p);
 
 	//继承的概念
 	class Student extends Person{
@@ -40,6 +40,21 @@
 	}
 	let s = new Student()
 	//console.log(s);
+
+/* ***************************************************************** */
+
+	//关于一个this指向的问题：1.构造器中的this永远是实例对象。 2.函数的bind方法有什么作用
+	 class Demo {
+		constructor(){
+			this.test = this.test.bind(2)
+		}
+		test(){ //1.test方法是放在Demo原型对象上的。2.通过类的实例对象可以找得到。
+			console.log('test被调用了',this);
+		}
+	}
+
+	let d = new Demo()
+	console.log(d);
 
 </script>
 	
