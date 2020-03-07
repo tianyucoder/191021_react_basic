@@ -22,18 +22,22 @@
 			super(...params)
 			//构造器中的this是Weather的实例，又称：组件的实例对象。
 			this.state = {isHot:true} //初始化状态，isHot用于标识是否炎热
+			this.changeHot = this.changeHot.bind(this)
 		}
 		//1.render放在哪？---Weather的原型上
 		//2.谁调用render？---Weather的实例
 		//3.render中的this是谁？---Weather的实例
+		//4.render是react的一个生命周期函数，所以this指向没问题。
 		render(){
-			return <h2 onClick={changeHot}>今天天很{this.state.isHot ? '炎热' : '凉爽'}</h2>
+			return <h2 onClick={this.changeHot}>今天天很{this.state.isHot ? '炎热' : '凉爽'}</h2>
 		}
-	}
-	//changeHot用于更改isHot的值
-	function changeHot(params) {
-		//更改组件实例对象身上的state中的isHot为相反值
-		//？？？？？
+		//注意：changeHot不是一个生命周期函数，所以react讲它的this改为undefined！
+	  changeHot() {
+			//console.log(this);
+			//alert(1)
+			let isHot = !this.state.isHot
+			this.setState({isHot})
+		}
 	}
 	//2.渲染组件标签
 	ReactDOM.render(<Weather/>,document.getElementById('example'))
