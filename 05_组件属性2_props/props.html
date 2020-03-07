@@ -22,19 +22,36 @@
 
 	//1.定义组件
 	class Person extends React.Component{
+		/* 
+			要限制标签属性值的：类型、必要性
+				1). 姓名必须指定，且为字符串类型；
+				2). 性别必须指定,且为字符串类型；
+				3). 年龄如果年龄没有指定, 默认为18
+		 */
+		//限制标签属性的必要性、类型
+		static propTypes = {
+			name:PropTypes.string.isRequired,
+			sex:PropTypes.string.isRequired,
+		}
+		//标签属性的默认值
+		static defaultProps = {
+			age:18
+		}
 		render(){
-			console.log(this);
 			const {name,age,sex} = this.props
 			return (
 				<ul>
 					<li>姓名：{name}</li>
 					<li>性别：{sex}</li>
-					<li>年龄：{age+1}</li>
+					<li>年龄：{age}</li>
 				</ul>
 			)
 		}
 	}
+
 //2.渲染组件
+//console.log('@@',...p1);//此处的...不奏效
+ReactDOM.render(<Person name="老刘" sex="女"/>,document.getElementById('example1'))
 let p1 = {
 	name:'小羊苏西',
 	age:19,
@@ -45,8 +62,6 @@ let p1 = {
 	price:'40/斤',
 	wechat:'nice_1021'
 }
-console.log('@@',...p1);//此处的...不奏效
-ReactDOM.render(<Person name="老刘" age={18} sex="女"/>,document.getElementById('example1'))
 ReactDOM.render(<Person {...p1}/>,document.getElementById('example2'))
 //ReactDOM.render(<Person name={p1.name} age={p1.age} sex={p1.sex} address={p1.address} phone={p1.phone} car={p1.car} price={p1.price} wechat={p1.wechat}/>,document.getElementById('example2'))
 //备注：babel+react环境，就可以让三点运算符展开对象，不过仅适用于标签传递属性，目的：传递标签属性更加方便。
