@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>受控组件&非受控组件</title>
+</head>
+<body>
+<div id="example"></div>
+
+<!-- 引入react核心库 -->
+<script type="text/javascript" src="../js/react.development.js"></script>
+<!-- 引入react-dom，react靠它操作DOM -->
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<!-- 引入babel编译jsx -->
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<script type="text/babel">
+
+	class Login extends React.Component{
+		state = {
+			username:'',
+			password:''
+		}
+		handleSubmit = (event)=>{
+			event.preventDefault() //阻止默认事件
+			//1.获取用户名、获取密码
+			let {username,password} = this.state
+			alert(`用户名为：${username}，密码为：${password}`)
+		}
+		//用户名改变的回调
+		handleUsername = (event)=>{
+			this.setState({username:event.target.value})
+		}
+		//密码改变的回调
+		handlePwd = (event)=>{
+			this.setState({password:event.target.value})
+		}
+		render(){
+			return (
+				<form onSubmit={this.handleSubmit} action="https://www.baidu.com" >
+					用户名：<input onChange={this.handleUsername} type="text" />&nbsp;
+					密码：<input onChange={this.handlePwd} type="password" />&nbsp;
+					<button>提交</button>
+				</form>
+			)
+		}
+	}
+
+	ReactDOM.render(<Login/>,document.getElementById('example'))
+
+</script>
+
+</body>
+</html>
