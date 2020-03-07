@@ -22,12 +22,21 @@
 			state = {
 				todos:['吃饭','睡觉','敲代码','抽烟','喝酒']
 			}
+			//用于更新app的状态
+			addTodos = (data)=>{
+				//1.获取原状态
+				let {todos} = this.state
+				//2.追加内容
+				todos.unshift(data)
+				//3.更新state
+				this.setState({todos})
+			}
 			render(){
 				const {todos} = this.state //解构赋值
 				return (
 					<div>
 						<h2>Simple Todo List</h2>
-						<Add count={todos.length}/>
+						<Add count={todos.length} addTodos={this.addTodos}/>
 						<List todoList={todos}/>
 					</div>
 				)
@@ -36,12 +45,26 @@
 
 		//用于添加的Add组件
 		class Add extends React.Component{
+			add = ()=>{
+				//1.获取用户的输入
+				let {value} = this.refs.userInput
+				//2.校验数据(数据不能为空)
+				if(!value){
+					alert('输入内容不能为空哦~~')
+					return
+				}
+				//3.将用户输入的内容追加到App的state里的todos数组中
+				//注意：状态(state)在哪里，更新状态的方法就在哪里
+				this.props.addTodos(value)
+				//4.清空输入
+				this.refs.userInput.value = ''
+			}
 			render(){
-				const {count} = this.props
+				const {count} = this.props//解构赋值
 				return (
 					<div>
-						<input type="text"/>&nbsp;
-						<button>Add#{count}</button>
+						<input type="text" ref="userInput"/>&nbsp;
+						<button onClick={this.add}>Add#{count}</button>
 					</div>
 				)
 			}
@@ -50,7 +73,7 @@
 		//用于展示的List组件
 		class List extends React.Component{
 			render(){
-				let {todoList} = this.props
+				let {todoList} = this.props//解构赋值
 				return (
 					<ul>
 						{todoList.map((item,index)=>{
