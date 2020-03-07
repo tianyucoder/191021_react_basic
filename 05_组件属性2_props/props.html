@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>props</title>
+</head>
+<body>
+
+<div id="example1"></div>
+<div id="example2"></div>
+
+<!-- 引入react核心库 -->
+<script type="text/javascript" src="../js/react.development.js"></script>
+<!-- 引入react-dom，react靠它操作DOM -->
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<!-- 引入babel编译jsx -->
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<!-- 引入prop-types,用于对标签属性的类型、必要性，进行限制 -->
+<script type="text/javascript" src="../js/prop-types.js"></script>
+
+<script type="text/babel">
+
+	//1.定义组件
+	class Person extends React.Component{
+		render(){
+			console.log(this);
+			const {name,age,sex} = this.props
+			return (
+				<ul>
+					<li>姓名：{name}</li>
+					<li>性别：{sex}</li>
+					<li>年龄：{age+1}</li>
+				</ul>
+			)
+		}
+	}
+//2.渲染组件
+let p1 = {
+	name:'小羊苏西',
+	age:19,
+	sex:'女',
+	address:'羊村8号楼',
+	phone:'1399999999',
+	car:'阿特兹',
+	price:'40/斤',
+	wechat:'nice_1021'
+}
+console.log('@@',...p1);
+ReactDOM.render(<Person name="老刘" age={18} sex="女"/>,document.getElementById('example1'))
+ReactDOM.render(<Person {...p1}/>,document.getElementById('example2'))
+//ReactDOM.render(<Person name={p1.name} age={p1.age} sex={p1.sex} address={p1.address} phone={p1.phone} car={p1.car} price={p1.price} wechat={p1.wechat}/>,document.getElementById('example2'))
+//备注：babel+react环境，就可以让三点运算符展开对象，目的：传递标签属性更加方便。
+</script>
+</body>
+</html>
+

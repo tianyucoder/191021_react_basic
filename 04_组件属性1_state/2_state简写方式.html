@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>state</title>
+  <title>state的简写方式</title>
 </head>
 <body>
 
@@ -15,6 +15,26 @@
 <!-- 引入babel编译jsx -->
 <script type="text/javascript" src="../js/babel.min.js"></script>
 
+<script type="text/babel">
+	//1.定义组件
+	class Weather extends React.Component{
+		state = {
+			isHot:true,
+			temp:-10
+		}
+		render(){
+			return <h2 onClick={this.changeHot}>今天天很{this.state.isHot ? '炎热' : '凉爽'}</h2>
+		}
+	  changeHot = ()=> {
+			let isHot = !this.state.isHot
+			//状态不要直接更新，this.state.isHot = false就是直接更新
+			//要调用setState去更新，setState只修改你传入的key所对应的value
+			this.setState({isHot})
+		}
+	}
+	//2.渲染组件标签
+	ReactDOM.render(<Weather/>,document.getElementById('example'))
+</script>
 
 </body>
 </html>
