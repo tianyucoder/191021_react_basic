@@ -22,6 +22,7 @@
 			isHot:true,
 			temp:-10
 		}
+		//render是我们定义的，但是render属于react生命周期函数
 		render(){
 			return <h2 onClick={this.changeHot}>今天天很{this.state.isHot ? '炎热' : '凉爽'}</h2>
 		}
