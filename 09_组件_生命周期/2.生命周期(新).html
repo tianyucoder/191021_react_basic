@@ -15,22 +15,29 @@
 <script type="text/javascript" src="../js/babel.min.js"></script>
 
 <script type="text/babel">
-	/* 
-		生命周期流程(新):
-				a.	初始化阶段:  由ReactDOM.render()触发
-							* constructor()
-							* static getDerivedStateFromProps() 
-							* render()
-							* componentDidMount()
-				b.	更新阶段 由组件内部this.setSate()或父组件重新render触发
-							* static getDerivedStateFromProps()
-							* shouldComponentUpdate()
-							* render()
-							* getSnapshotBeforeUpdate()
-							* componentDidUpdate()
-				c.	移除组件:  由ReactDOM.unmountComponentAtNode(containerDom)触发
-							* componentWillUnmount()
-	*/
+	
+	class App extends React.Component{
+
+		constructor(...params){
+			console.log('---constructor---');
+			super(...params)
+			this.state = {car:'奔驰'}
+		}
+
+		//从props获取衍生的状态
+		static getDerivedStateFromProps(props,state){
+			console.log('---getDerivedStateFromProps---',props,state);
+			return {car:props.car}
+			//return null //此处可以返回：1.状态对象。2.null
+		}
+
+		render(){
+			console.log('---render---');
+			return <h2>我是App组件，我的车是{this.state.car}</h2>
+		}
+	}
+
+	ReactDOM.render(<App car="奥拓"/>,document.getElementById('example'))
 
 </script>
 
