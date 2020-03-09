@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>10_key</title>
+</head>
+<body>
+
+<div id="root"></div>
+
+<!--引入react核心库-->
+<script type="text/javascript" src="../js/react.development.js"></script>
+<!--引入操作react操作DOM库-->
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<!--引入babel-->
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<script type="text/babel">
+
+  /*
+   面试题:
+      1). react/vue中的key的作用/内部原理
+      2). 为什么列表的key尽量不要用index?
+      
+   1. 虚拟DOM的key的作用?
+      1). 简单的说: key是虚拟DOM对象的标识, 在更新显示时key起着极其重要的作用
+      2). 详细的说: 当列表数组中的数据发生变化生成新的虚拟DOM后, React进行新旧虚拟DOM的diff比较
+          a. key没有变
+              对应item数据没变, 直接使用原来的真实DOM
+              对应item数据变了, 对原来的真实DOM进行数据更新
+          b. key变了
+              --原key变化：销毁原来的真实DOM, 根据item数据创建新的虚拟DOM，随后渲染真实DOM到页面(即使item数据没有变)
+              --新key产生：根据item数据创建新的虚拟DOM，随后渲染真实DOM到页面
+              
+   2. key为index的问题
+				1). 如果会对数据进行：添加、删除、排序等操作 => 产生没有必要的真实DOM更新 ==> 界面效果没问题, 但效率低。
+				2). 如果item界面还有输入类DOM => 产生错误的真实DOM更新 ==> 界面有问题。
+				注意: 如果不存在添加/删除/排序操作,仅用于渲染列表用于展示，使用index作为key没有问题。
+      
+   3. 解决:
+      	使用每条数据的唯一标作为key, 比如id属性值、身份证号、学号、手机号等。
+   */
+  
+</script>
+</body>
+</html>

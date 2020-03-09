@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>04_component</title>
+</head>
+<body>
+<div id="example"></div>
+<br>
+<!--引入react核心库-->
+<script type="text/javascript" src="../js/react.development.js"></script>
+<!--引入操作react操作DOM库-->
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<!--引入babel-->
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/babel">
+  /*
+  验证:
+  虚拟DOM+DOM Diff算法: 最小化页面重绘
+  */
+	/* 
+		一、 慢动作：14:53:01
+				根据状态生成的虚拟DOM
+				<div>
+					Hello,<input type="text"/>
+					<span>现在是：14:53:01 GMT+0800 (中国标准时间)</span>
+				</div>
+		二、 慢动作：14:53:02
+				根据状态生成新的的虚拟DOM
+				<div>
+					Hello,<input type="text"/>
+					<span>现在是：14:53:02 GMT+0800 (中国标准时间)</span>
+				</div>
+	 */
+
+  class HelloWorld extends React.Component {
+    state = {
+      date: new Date()
+    }
+
+    componentDidMount () {
+      setInterval(() => {
+        this.setState({
+            date: new Date()
+        })
+      }, 1000)
+    }
+
+    render () {
+      return (
+        <div>
+          Hello,<input type="text"/>
+          <span>现在是：{this.state.date.toTimeString()}</span>
+        </div>
+      )
+    }
+  }
+	
+  ReactDOM.render(<HelloWorld/>,document.getElementById('example'))
+</script>
+</body>
+</html>
