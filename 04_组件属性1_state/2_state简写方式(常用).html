@@ -23,7 +23,9 @@
 			temp:-10
 		}
 		//render是我们定义的，但是render属于react生命周期函数
+		//render到底调用几次？1+n次，1是初始化的那次，n取决于更新几次状态。
 		render(){
+			console.log('----render---');
 			return <h2 onClick={this.changeHot}>今天天很{this.state.isHot ? '炎热' : '凉爽'}</h2>
 		}
 	  changeHot = ()=> {
