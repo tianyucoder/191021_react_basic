@@ -31,9 +31,27 @@
 			//return null //此处可以返回：1.状态对象。2.null
 		}
 
+		getSnapshotBeforeUpdate(props,preState){
+			console.log('---getSnapshotBeforeUpdate---',props,preState);
+			return '哈哈'
+		}
+
+		componentDidUpdate(props,preState,c){
+			console.log('---componentDidUpdate---',props,preState,c);
+		}
+
+		change = ()=>{
+			this.setState({car:'马自达·阿特兹'})
+		}
+
 		render(){
 			console.log('---render---');
-			return <h2>我是App组件，我的车是{this.state.car}</h2>
+			return (
+				<div>
+					<h2>我是App组件，我的车是{this.state.car}</h2>
+					<button onClick={this.change}>点我换车的名字</button>
+				</div>
+			)
 		}
 	}
 
