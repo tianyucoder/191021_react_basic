@@ -72,6 +72,9 @@
 
 		//用于展示的List组件
 		class List extends React.Component{
+			componentWillReceiveProps(){
+				console.log('---componentWillReceiveProps---');
+			}
 			render(){
 				let {todoList} = this.props//解构赋值
 				return (
